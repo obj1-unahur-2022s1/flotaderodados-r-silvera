@@ -45,4 +45,26 @@ class Dependencia {
 	}
 	
 	method agregarPedido(pedido) = pedidos.add(pedido)
+	
+	method quitarPedido(pedido) = pedidos.remove(pedido)
+	
+	method totalPasajerosEnPedidos(){
+		return pedidos.sum{p => p.pasajerosATransportar()}
+	}
+	
+	method puedeSerSatisfechoPorAlgunRodado(pedido){
+		return rodados.any{r => pedido.puedeSatifacerPedido(r)}
+	}
+	
+	method pedidosInsatisfechos(){
+		return pedidos.filter{p => not self.puedeSerSatisfechoPorAlgunRodado(p)}
+	}
+	
+	method esColorIncompatibleParaTodosLosPedidos(color){
+		pedidos.all{p => p.coloresIncompatibles().contains(color)}
+	}
+	
+	method relajarTodosLosPedidos(){
+		pedidos.forEach{p => p.relajar()}
+	}
 }

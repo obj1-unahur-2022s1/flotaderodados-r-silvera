@@ -1,8 +1,8 @@
 class Pedido {
-	const property distancia 				// lo ponemos como var para poder cambiarlo en la consolo(pero seria const)
-	const property tiempoMaximo				// lo ponemos como var para poder cambiarlo en la consolo(pero seria const)
-	const property pasajerosATransportar
-	const property coloresIncompatibles = []
+	var property distancia 				// lo ponemos como var para poder cambiarlo en la consolo(pero seria const)
+	var property tiempoMaximo				// lo ponemos como var para poder cambiarlo en la consolo(pero seria const)
+	var property pasajerosATransportar
+	var property coloresIncompatibles = []
 	
 	method velocidadRequerida() = distancia / tiempoMaximo
 	method puedeSatisfacerPedido(auto){
@@ -11,4 +11,7 @@ class Pedido {
 		and !coloresIncompatibles.contains(auto.color())
 	}
 	
+	method acelerar(){tiempoMaximo -= 1}
+	
+	method relajar(){tiempoMaximo += 1}
 }
